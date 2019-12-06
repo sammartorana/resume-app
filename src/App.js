@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
+import ResumeForm from './ResumeForm/resumeForm'
 
-class ResumeForm extends React.Component {
+class ResumeApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,35 +36,12 @@ class ResumeForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Summary:
-          <textarea
-            name="summary"
-            onChange={this.handleChange} />
-        </label>
-        <br />
-        <label>
-          employeeName:
-          <input
-            name="employeeName"
-            type="text"
-            value={this.state.employeeName}
-            onChange={this.handleChange} />
-        </label>
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+<div>
+  <ResumeForm />
+</div>
     );
   }
 }
 
-function App() {
-  return (
-    <div className="App">
-      <ResumeForm/>
-    </div>
-  );
-}
 
-export default App;
+export default ResumeApp;
