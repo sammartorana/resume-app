@@ -9,6 +9,7 @@ class AddEmployerForm extends React.Component {
 			position: '',
 			hireDate: '',
 			endDate: '',
+			employmentType: '',
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,6 +37,14 @@ class AddEmployerForm extends React.Component {
 					<label>
 						Employer:
 						<input name="employer" onChange={this.handleChange} />
+					</label>
+					<label>
+						<input type="radio" value="contract" name="employmentType" onChange={this.handleChange} />
+						Contract
+					</label>
+					<label>
+						<input type="radio" value="nonContract" name="employmentType" onChange={this.handleChange} />
+						Non-Contract
 					</label>
 					<label>
 						Position:
