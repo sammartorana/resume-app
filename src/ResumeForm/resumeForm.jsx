@@ -10,25 +10,24 @@ class ResumeForm extends React.Component {
 		super(props);
 
 		this.state = {
-			employers: { visibility: false },
-			projects: { visibility: false },
-			certsTrainings: { visibility: false },
-			summary: { visibility: false },
+			employers: { visibility: false, employers: [] },
+			projects: { visibility: false, projects: [] },
+			certsTrainings: { visibility: false, certsTrainings: [] },
+			summary: { visibility: false, summary: [] },
 		};
 
 		this.skills = [];
 		this.experiences = [];
 
 		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.updateState = this.updateState.bind(this);
 		this.toggleVisibility = this.toggleVisibility.bind(this);
+		this.showState = this.showState.bind(this);
 	}
 
-	// update(field) {
-	// 	console.log('received', field);
-	// 	this.experiences.push(field);
-	// 	console.log(ResumeForm.experiences);
-	// }
+	showState(event) {
+		console.log('finalState', this.state);
+	}
 
 	handleChange(event) {
 		const target = event.target.name;
@@ -40,16 +39,28 @@ class ResumeForm extends React.Component {
 		console.log(this.state);
 	}
 
-	handleSubmit(event) {
-		console.log('Employee Name:', this.state.employeeName, 'Summary:', this.state.summary);
-		event.preventDefault();
+	updateState(childState, target) {
+		const parentState = this.state[target];
+
+		console.log('parentState', parentState);
+
+		console.log('what I got:', 'state', childState, 'name', target);
+
+		this.setState({
+			[target]: {
+				...this.state[target],
+				[target]: [...parentState[target], childState],
+			},
+		});
+
+		console.log('state:', this.state);
 	}
 
 	toggleVisibility(event) {
 		const target = event.target.name;
 
 		this.setState({
-			[target]: { visibility: !this.state[target].visibility },
+			[target]: { ...this.state[target], visibility: !this.state[target].visibility },
 		});
 
 		console.log(this.state);
@@ -61,25 +72,29 @@ class ResumeForm extends React.Component {
 				<div>
 					<input type="submit" value="Add Employer" name="employers" onClick={this.toggleVisibility} />
 				</div>
-				{this.state.employers.visibility ? <AddEmployerForm /> : null}
+				{this.state.employers.visibility ? <AddEmployerForm onFormComplete={this.updateState} /> : null}
 				<div>
 					<input type="submit" value="Add Project" name="projects" onClick={this.toggleVisibility} />
 				</div>
-				{this.state.projects.visibility ? <AddProjectForm /> : null}
+				{this.state.projects.visibility ? <AddProjectForm onFormComplete={this.updateState} /> : null}
 				<div>
 					<input type="submit" value="Add Summary" name="summary" onClick={this.toggleVisibility} />
 				</div>
-				{this.state.summary.visibility ? <SummaryForm /> : null}
+				{this.state.summary.visibility ? <SummaryForm onFormComplete={this.updateState} /> : null}
 				<div>
 					<input
 						type="submit"
-						value="Add Certification or Training"
-						name="summary"
+						value="Add Cert/Training"
+						name="certsTrainings"
 						onClick={this.toggleVisibility}
 					/>
 				</div>
-				{this.state.certsTrainings.visibility ? <AddCertTrainingForm /> : null}
+				{this.state.certsTrainings.visibility ? (
+					<AddCertTrainingForm onFormComplete={this.updateState} />
+				) : null}
 				{/* <AddCertTrainingForm /> */}
+
+				<input type="submit" value="showState" onClick={this.showState} />
 			</div>
 		);
 	}

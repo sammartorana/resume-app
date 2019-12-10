@@ -29,28 +29,23 @@ class SummaryForm extends React.Component {
 		this.setState({
 			[target]: event.target.value,
 		});
-
-		console.log(this.state);
-	}
-
-	logStuff(event) {
-		console.log('things are happening', event.target.value);
 	}
 
 	handleSubmit(event) {
-		console.log('Final State:', this.state);
 		event.preventDefault();
+		const state = this.state;
+		console.log('state in submit', this.state);
+		this.props.onFormComplete(state, event.target.name);
 	}
 
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
+				<form>
 					<label>
 						Summary:
 						<textarea name="summary" onChange={this.handleChange} />
 					</label>
-					<input type="submit" value="Submit" />
 				</form>
 
 				<form onSubmit={this.updateBullet}>
@@ -60,6 +55,10 @@ class SummaryForm extends React.Component {
 					</label>
 					<input type="submit" value="Submit" />
 				</form>
+
+				<button name="projects" onClick={this.handleSubmit}>
+					All done
+				</button>
 			</div>
 		);
 	}

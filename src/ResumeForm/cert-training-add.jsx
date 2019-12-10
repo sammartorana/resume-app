@@ -20,13 +20,14 @@ class AddCertTrainingForm extends React.Component {
 		this.setState({
 			[target]: event.target.value,
 		});
-
-		console.log(this.state);
 	}
 
 	handleSubmit(event) {
-		console.log('Final State:', this.state);
 		event.preventDefault();
+
+		const state = this.state;
+		console.log('state in submit', this.state);
+		this.props.onFormComplete(state, 'certsTrainings');
 	}
 
 	render() {
@@ -53,7 +54,6 @@ class AddCertTrainingForm extends React.Component {
 						Date:
 						<input type="date" name="date" onChange={this.handleChange} />
 					</label>
-
 					<input type="submit" value="Submit" />
 				</form>
 			</div>

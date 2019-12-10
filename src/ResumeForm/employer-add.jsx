@@ -21,13 +21,13 @@ class AddEmployerForm extends React.Component {
 		this.setState({
 			[target]: event.target.value,
 		});
-
-		console.log(this.state);
 	}
 
 	handleSubmit(event) {
-		console.log('Final State:', this.state);
 		event.preventDefault();
+		const state = this.state;
+		console.log('state in submit', this.state, event.target.name);
+		this.props.onFormComplete(state, event.target.name);
 	}
 
 	render() {
@@ -39,7 +39,7 @@ class AddEmployerForm extends React.Component {
 		// }
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
+				<form name="employers" onSubmit={this.handleSubmit}>
 					<label>
 						Employer:
 						<input name="employer" onChange={this.handleChange} />

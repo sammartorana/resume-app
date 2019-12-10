@@ -32,19 +32,19 @@ class AddProjectForm extends React.Component {
 		this.setState({
 			[target]: event.target.value,
 		});
-
-		console.log(this.state);
 	}
 
 	handleSubmit(event) {
-		console.log('Final State:', this.state);
 		event.preventDefault();
+		const state = this.state;
+		console.log('state in submit', this.state);
+		this.props.onFormComplete(state, event.target.name);
 	}
 
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
+				<form>
 					<label>
 						Position:
 						<input name="position" onChange={this.handleChange} />
@@ -65,7 +65,6 @@ class AddProjectForm extends React.Component {
 						Tools Used:
 						<input name="tools" onChange={this.handleChange} />
 					</label>
-					<input type="submit" value="Submit" />
 				</form>
 				<form onSubmit={this.updateBullet}>
 					<label>
@@ -74,6 +73,9 @@ class AddProjectForm extends React.Component {
 					</label>
 					<input type="submit" value="Submit" />
 				</form>
+				<button name="projects" onClick={this.handleSubmit}>
+					All done
+				</button>
 			</div>
 		);
 	}
