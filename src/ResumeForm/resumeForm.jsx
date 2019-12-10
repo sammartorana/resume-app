@@ -4,6 +4,7 @@ import ExperiencesForm from './experiences';
 import SummaryForm from './summary-update';
 import AddEmployerForm from './employer-add';
 import AddProjectForm from './project-add';
+import AddCertTrainingForm from './cert-training-add';
 
 class ResumeForm extends React.Component {
 	constructor(props) {
@@ -49,6 +50,7 @@ class ResumeForm extends React.Component {
 				<SummaryForm />
 				<AddEmployerForm />
 				<AddProjectForm />
+				<AddCertTrainingForm />
 			</div>
 		);
 	}
