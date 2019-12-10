@@ -1,7 +1,6 @@
 import React from 'react';
-import ResumeForm from './resumeForm';
 
-class ExperiencesForm extends ResumeForm { 
+class ExperiencesForm extends React.Component { 
     constructor(props) {
         super(props);
         
@@ -19,14 +18,12 @@ class ExperiencesForm extends ResumeForm {
     
       handleChange(event) {
         const name = event.target.name;
-    
         this.experience[name] = event.target.value;
     
         console.log(this.experience)
       }
     
       handleSubmit(event) {
-        this.update(this.experience);
         console.log('passed up', this.experience)
         event.preventDefault();
       }
