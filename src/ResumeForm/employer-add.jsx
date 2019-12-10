@@ -31,6 +31,12 @@ class AddEmployerForm extends React.Component {
 	}
 
 	render() {
+		// console.log(this.props.visibility);
+		// const visibility = { visibility };
+		// if (!visibility) {
+		// 	console.log('its null');
+		// 	return null;
+		// }
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
