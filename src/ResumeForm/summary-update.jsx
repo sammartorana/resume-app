@@ -56,7 +56,7 @@ class SummaryForm extends React.Component {
 				<form onSubmit={this.updateBullet}>
 					<label>
 						Bullet:
-						<textarea name="bullet" />
+						<input name="bullet" />
 					</label>
 					<input type="submit" value="Submit" />
 				</form>

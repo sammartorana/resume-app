@@ -2,6 +2,7 @@ import React from 'react';
 import SkillsForm from './skills';
 import ExperiencesForm from './experiences';
 import SummaryForm from './summary-update';
+import AddEmployerForm from './employer-add';
 
 class ResumeForm extends React.Component {
 	constructor(props) {
@@ -45,6 +46,7 @@ class ResumeForm extends React.Component {
 				{/* <SkillsForm />
                 <ExperiencesForm /> */}
 				<SummaryForm />
+				<AddEmployerForm />
 			</div>
 		);
 	}
